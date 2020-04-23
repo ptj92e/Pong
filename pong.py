@@ -1,5 +1,5 @@
 import turtle
-
+#Sets the size and style of the game's screen
 wn = turtle.Screen()
 wn.title("Pong Tutorial")
 wn.bgcolor("black")
@@ -7,7 +7,7 @@ wn.setup(width=800, height=600)
 wn.tracer(0)
 
 # Paddle A
-#objectName.ClassName()
+# Creates the initial instance of the paddles with size and style
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)
 paddle_a.shape("square")
@@ -26,14 +26,18 @@ paddle_b.penup()
 paddle_b.goto(350, 0)
 
 # Ball
+# Creates the initial instance of the ball with size and style
 ball = turtle.Turtle()
 ball.speed(0)
 ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
+ball.dx = 2
+ball.dy = 2
 
 # Functions
+# Defines the motion of both of the paddles up and down
 def paddle_a_up():
     y = paddle_a.ycor()
     y += 20
@@ -65,5 +69,27 @@ wn.onkeypress(paddle_b_down, "Down")
 
 #Main Game Loop
 while True:
-    #when the loop runs, the window updates
+    #when the loop runs, the window update
     wn.update()
+    #Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # Border Checking
+    if ball.ycor() > 290:
+        ball.sety(290)
+        # Reverses direction of ball
+        ball.dy *= -1
+
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        # Reverses direction of ball
+        ball.dy *= -1
+
+    if ball.xcor() > 390:
+        ball.goto(0, 0)
+        ball.dx *= -1
+
+    if ball.xcor() < -390:
+        ball.goto(0, 0)
+        ball.dx *= -1
