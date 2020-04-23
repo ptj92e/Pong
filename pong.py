@@ -1,4 +1,5 @@
 import turtle
+import os
 #Sets the size and style of the game's screen
 wn = turtle.Screen()
 wn.title("Pong Tutorial")
@@ -93,11 +94,13 @@ while True:
         ball.sety(290)
         # Reverses direction of ball
         ball.dy *= -1
+        os.system("afplay Pong.wav&")
 
     if ball.ycor() < -290:
         ball.sety(-290)
         # Reverses direction of ball
         ball.dy *= -1
+        os.system("afplay Pong.wav&")
 
     if ball.xcor() > 390:
         ball.goto(0, 0)
@@ -117,7 +120,9 @@ while True:
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40):
         ball.setx(340)
         ball.dx *= -1
+        os.system("afplay Pong.wav&")
 
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40):
         ball.setx(-340)
         ball.dx *= -1
+        os.system("afplay Pong.wav&")
